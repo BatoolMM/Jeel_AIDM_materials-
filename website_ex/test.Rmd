@@ -1,6 +1,6 @@
 ---
 title: "R Markdown Example"
-author: "Selcan Aydin"
+author: ""
 date: "4/14/2021"
 output: html_document
 ---
