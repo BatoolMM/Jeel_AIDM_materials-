@@ -3,8 +3,14 @@ title: "R Markdown Example"
 author: "Selcan Aydin"
 date: "`r Sys.Date()`"
 output:
-  prettydoc::html_pretty:
-    theme: cayman
+  pdf_document: default
+  word_document: default
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    code_folding: hide
+    code_download: true
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r eval=FALSE, echo=TRUE}
-install.packages(c("tidyverse", "DT", "palmerpenguins", "distill", "bookdown", "rticles", "gapminder", "prettydoc", "plotly"))
+install.packages(c("tidyverse", "palmerpenguins", "rticles", "gapminder", "prettydoc", "plotly"))
 ```
 
 ```{r include=FALSE}
@@ -41,23 +47,6 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can also make interactive plots.
-
-
-```{r}
-
-data <- gapminder %>% filter(year=="2007") %>% dplyr::select(-year)
-
-# Most basic bubble plot
-p <- data %>%
-      arrange(desc(pop)) %>%
-      mutate(country = factor(country, country)) %>%
-      ggplot(aes(x=gdpPercap, y=lifeExp, size=pop, color=continent)) +
-      geom_point(alpha=0.5) +
-      scale_size(range = c(.1, 24), name="Population (M)")
-
-ggplotly(p)
-
-```
 
 
 ## Changing themes
